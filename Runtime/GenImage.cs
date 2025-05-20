@@ -17,18 +17,22 @@ namespace Volorf.GenImage
         
         Texture2D _texture;
         RawImage _rawImage;
-        HttpRequestsManager _httpRequestsManager;
+        GenRequestManager _genRequestManager;
 
-        async void Start()
+        void Start()
         {
-            _httpRequestsManager = new HttpRequestsManager();
+            _genRequestManager = new GenRequestManager();
             _rawImage = GetComponent<RawImage>();
-            Vector2 rectSize = _rawImage.rectTransform.rect.size;
-            _rawImage.uvRect = Utils.GetFixedUVRect(rectSize, fillMode, Utils.GetSize(size, model));
+            Generate();
+        }
 
+        async void Generate()
+        {
+            UpdateRawImageUV();
+            
             try
             {
-                _texture = await _httpRequestsManager.GenerateTexture2D(
+                _texture = await _genRequestManager.GenerateTexture2D(
                     provider: provider,
                     model: model,
                     quality: quality,
@@ -41,6 +45,12 @@ namespace Volorf.GenImage
             {
                 Debug.LogError($"Error generating image: {e.Message}");
             }
+        }
+
+        void UpdateRawImageUV()
+        {
+            Vector2 rectSize = _rawImage.rectTransform.rect.size;
+            _rawImage.uvRect = Utils.GetFixedUVRect(rectSize, fillMode, Utils.GetSize(size, model));
         }
     }
 }

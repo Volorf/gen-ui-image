@@ -75,7 +75,6 @@ namespace Volorf.GenImage
                     float genRatio = (float)genSize.x / (float)genSize.y;
                     float yOffset = 1f / ratio * genRatio;
                     Vector2 newUV = new Vector2(1f, yOffset);
-                    Debug.Log("newUV: " + newUV);
                     return new Rect(0f, (1f - newUV.y) / 2f, newUV.x, newUV.y);
                 }
                 else
@@ -84,7 +83,6 @@ namespace Volorf.GenImage
                     float genRatio = (float)genSize.y / (float)genSize.x;
                     float xOffset = 1f / ratio * genRatio;
                     Vector2 newUV = new Vector2(xOffset, 1f);
-                    Debug.Log("newUV: " + newUV);
                     return new Rect((1f - xOffset) / 2f, 0f, newUV.x, newUV.y);
                 }
             }
