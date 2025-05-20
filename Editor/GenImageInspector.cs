@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class GenImageInspector : MonoBehaviour
+namespace Volorf.GenImage
 {
-    // Start is called before the first frame update
-    void Start()
+    [CustomEditor(typeof(GenImage))]
+    public class GenImageInspector : Editor
     {
-        
-    }
+        public override void OnInspectorGUI()
+        {
+            GenImage genImage = (GenImage)target;
+            DrawDefaultInspector();
+            EditorGUILayout.Space();
+            // Add a button to generate an image
+            if (GUILayout.Button("Generate Image"))
+            {
+                Debug.Log("Generating image...");
+            }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            // Add a button to save the image
+            if (GUILayout.Button("Save Image"))
+            {
+                Debug.Log("Saving image...");
+            }
+        }
     }
 }
+
