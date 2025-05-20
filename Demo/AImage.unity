@@ -155,10 +155,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1407379549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1920, y: -1080}
+  m_SizeDelta: {x: 3200, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142837159
 MonoBehaviour:
@@ -172,14 +172,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee548b4785086477eb42866c0b185b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prompt: Render a red panda eating borsh and wearing traditional slavic closes with
-    other 3 red pandas who play traditional musical instruments and dancing around
-    the one who eats borsh.
-  model: 2
-  quality: 3
   provider: 0
-  size: {x: 1024, y: 1024}
-  fillMode: 0
+  model: 0
+  quality: 3
+  size: 0
+  fillMode: 1
+  prompt: 'Cute Red Panda
+
+'
 --- !u!114 &142837160
 MonoBehaviour:
   m_ObjectHideFlags: 0
