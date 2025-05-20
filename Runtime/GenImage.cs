@@ -10,9 +10,16 @@ namespace Volorf.GenImage
     {
         public Provider provider = Provider.OpenAI;
         public Model model = Model.DallE3;
+        
+        [Space(10)]
         public Quality quality = Quality.Auto;
         public Size size = Size.Square;
         public FillMode fillMode = FillMode.Stretch;
+        
+        [Space(10)]
+        public bool generateOnStart = true;
+        
+        [Space(10)]
         [TextArea(3, 9)] public string prompt;
         
         Texture2D _texture;
@@ -23,7 +30,8 @@ namespace Volorf.GenImage
         {
             _genRequestManager = new GenRequestManager();
             _rawImage = GetComponent<RawImage>();
-            Generate();
+            if (generateOnStart) 
+                Generate();
         }
 
         async void Generate()
