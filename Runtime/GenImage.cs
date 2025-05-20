@@ -23,46 +23,8 @@ namespace Volorf.GenImage
         {
             _httpRequestsManager = new HttpRequestsManager();
             _rawImage = GetComponent<RawImage>();
-            
             Vector2 rectSize = _rawImage.rectTransform.rect.size;
-            print("size: " + rectSize);
-            bool isLandscape = rectSize.x > rectSize.y;
-
-            if (fillMode == FillMode.Stretch)
-            {
-                if (isLandscape)
-                {
-                    float ratio = rectSize.x / rectSize.y;
-                    float yOffset = 1f / ratio;
-                    Vector2 newUV = new Vector2(1f, yOffset);
-                    print("newUV: " + newUV);
-                    _rawImage.uvRect = new Rect(0f, (1f - newUV.y) / 2f, newUV.x, newUV.y);
-                }
-                else
-                {
-                    float ratio = rectSize.y / rectSize.x;
-                    float xOffset = 1f / ratio;
-                    Vector2 newUV = new Vector2(xOffset, 1f);
-                    print("newUV: " + newUV);
-                    _rawImage.uvRect = new Rect((1f - xOffset) / 2f, 0f, newUV.x, newUV.y);
-                }
-            }
-
-            if (fillMode == FillMode.PreserveAspect)
-            {
-                if (isLandscape)
-                {
-                    float ratio = rectSize.x / rectSize.y;
-                    Vector2 newUV = new Vector2(1f * ratio, 1f);
-                    _rawImage.uvRect = new Rect((1f - newUV.x) / 2f, 0f, newUV.x, newUV.y);
-                }
-                else
-                {
-                    float ratio = rectSize.y / rectSize.x;
-                    Vector2 newUV = new Vector2(1f, 1f * ratio);
-                    _rawImage.uvRect = new Rect(0f, (1f - newUV.y) / 2f, newUV.x, newUV.y);
-                }
-            }
+            _rawImage.uvRect = Utils.GetFixedUVRect(rectSize, fillMode, Utils.GetSize(size, model));
 
             try
             {
@@ -80,7 +42,6 @@ namespace Volorf.GenImage
                 Debug.LogError($"Error generating image: {e.Message}");
             }
         }
-        
     }
 }
 

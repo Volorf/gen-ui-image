@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Volorf.GenImage
@@ -48,7 +49,8 @@ namespace Volorf.GenImage
                     Model.GptImage1 => new Vector2Int(1024, 1536),
                     Model.DallE3 => new Vector2Int(1024, 1792),
                     _ => new Vector2Int(512, 512)
-                }
+                },
+                _ => throw new ArgumentOutOfRangeException(nameof(size), size, null)
             };
         }
         
@@ -59,6 +61,51 @@ namespace Volorf.GenImage
                 Provider.OpenAI => "https://api.openai.com/v1/images/generations",
                 _ => "https://api.openai.com/v1/images/generations"
             };
+        }
+
+        public static Rect GetFixedUVRect(Vector2 imageSize, FillMode mode, Vector2Int genSize)
+        {
+            bool isLandscape = imageSize.x > imageSize.y;
+
+            if (mode == FillMode.Stretch)
+            {
+                if (isLandscape)
+                {
+                    float ratio = imageSize.x / imageSize.y;
+                    float genRatio = (float)genSize.x / (float)genSize.y;
+                    float yOffset = 1f / ratio * genRatio;
+                    Vector2 newUV = new Vector2(1f, yOffset);
+                    Debug.Log("newUV: " + newUV);
+                    return new Rect(0f, (1f - newUV.y) / 2f, newUV.x, newUV.y);
+                }
+                else
+                {
+                    float ratio = imageSize.y / imageSize.x;
+                    float genRatio = (float)genSize.y / (float)genSize.x;
+                    float xOffset = 1f / ratio * genRatio;
+                    Vector2 newUV = new Vector2(xOffset, 1f);
+                    Debug.Log("newUV: " + newUV);
+                    return new Rect((1f - xOffset) / 2f, 0f, newUV.x, newUV.y);
+                }
+            }
+
+            if (mode == FillMode.PreserveAspect)
+            {
+                if (isLandscape)
+                {
+                    float ratio = imageSize.x / imageSize.y;
+                    Vector2 newUV = new Vector2(1f * ratio, 1f);
+                    return new Rect((1f - newUV.x) / 2f, 0f, newUV.x, newUV.y);
+                }
+                else
+                {
+                    float ratio = imageSize.y / imageSize.x;
+                    Vector2 newUV = new Vector2(1f, 1f * ratio);
+                    return new Rect(0f, (1f - newUV.y) / 2f, newUV.x, newUV.y);
+                }
+            }
+            
+            return new Rect(0, 0, 1, 1);
         }
     }
 }
