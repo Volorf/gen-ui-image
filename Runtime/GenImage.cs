@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 namespace Volorf.GenImage
 {
+    [ExecuteAlways]
     [AddComponentMenu("Volorf/GenImage")]
     [RequireComponent(typeof(RawImage))]
     public class GenImage : MonoBehaviour
@@ -12,7 +13,7 @@ namespace Volorf.GenImage
         public Model model = Model.DallE3;
         
         [Space(10)]
-        public Quality quality = Quality.Auto;
+        public Quality quality = Quality.Medium;
         public Size size = Size.Square;
         public FillMode fillMode = FillMode.Stretch;
         
@@ -25,6 +26,7 @@ namespace Volorf.GenImage
         Texture2D _texture;
         RawImage _rawImage;
         GenRequestManager _genRequestManager;
+        bool _isGenerating;
 
         void Start()
         {
@@ -34,12 +36,15 @@ namespace Volorf.GenImage
                 Generate();
         }
 
-        async void Generate()
+        public async void Generate()
         {
             UpdateRawImageUV();
             
             try
             {
+                if (_isGenerating) return;
+                _isGenerating = true;
+                _genRequestManager ??= new GenRequestManager();
                 _texture = await _genRequestManager.GenerateTexture2D(
                     provider: provider,
                     model: model,
@@ -47,11 +52,15 @@ namespace Volorf.GenImage
                     size: size,
                     prompt: prompt);
                 
-                if (_rawImage != null) _rawImage.texture = _texture;
+                _isGenerating = false;
+                if (_rawImage == null) 
+                    _rawImage = GetComponent<RawImage>();
+                _rawImage.texture = _texture;
             }
             catch (Exception e)
             {
                 Debug.LogError($"Error generating image: {e.Message}");
+                _isGenerating = false;
             }
         }
 

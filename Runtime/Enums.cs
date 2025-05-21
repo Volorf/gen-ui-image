@@ -2,9 +2,9 @@ namespace Volorf.GenImage
 {
     public enum Model
     {
+        GptImage1,
         DallE3,
-        DallE2,
-        GptImage1
+        DallE2
     }
     
     public enum Provider
@@ -23,8 +23,7 @@ namespace Volorf.GenImage
     {
         Low,
         Medium,
-        High,
-        Auto
+        High
     }
     
     public enum Size

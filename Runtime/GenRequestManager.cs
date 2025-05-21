@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -26,21 +27,23 @@ namespace Volorf.GenImage
         {
             string endPoint = Utils.GetEndPoint(provider);
             Vector2Int genSize = Utils.GetSize(size, model);
+
+
+            Dictionary<string, string> req = new Dictionary<string, string>();
+            req.Add("model", Utils.GetModelName(model));
+            req.Add("prompt", prompt);
+            req.Add("n", "1");
+            req.Add("size", $"{genSize.x}x{genSize.y}");
             
-            GenRequest reqBody = new GenRequest
+            if (model != Model.DallE2)
             {
-                model = Utils.GetModelName(model),
-                prompt = prompt,
-                n = 1,
-                size = $"{genSize.x}x{genSize.y}",
-                // response_format = "url"
-            };
+                req.Add("quality", Utils.GetQualityName(quality, model));
+            }
             
-            var json = JsonUtility.ToJson(reqBody);
-            Debug.Log(json);
-            
+            string genReq = Utils.DictionaryToJson(req);
+            Debug.Log($"Request: {genReq}");
             using var post = new HttpRequestMessage(HttpMethod.Post, endPoint);
-            post.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            post.Content = new StringContent(genReq, Encoding.UTF8, "application/json");
             post.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
             
             using HttpResponseMessage genResponse = await _http.SendAsync(post);
@@ -59,7 +62,7 @@ namespace Volorf.GenImage
             
             Texture2D texture = new Texture2D(2, 2, TextureFormat.RGBA32, mipChain: false);
             
-            if (reqBody.model != "gpt-image-1")
+            if (Utils.GetModelName(model) != "gpt-image-1")
             {
                 string imgUrl = imageResponse.data[0].url;
                 using HttpResponseMessage imgResp = await _http.GetAsync(imgUrl);

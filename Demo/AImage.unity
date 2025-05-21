@@ -173,13 +173,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   provider: 0
-  model: 0
-  quality: 3
-  size: 2
-  fillMode: 0
-  prompt: 'Cute Red Panda
-
-'
+  model: 2
+  quality: 0
+  size: 1
+  fillMode: 1
+  generateOnStart: 0
+  prompt: Cute Red Panda
 --- !u!114 &142837160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,9 +203,9 @@ MonoBehaviour:
   m_UVRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: -0.58000004
     width: 1
-    height: 1
+    height: 2.16
 --- !u!222 &142837161
 CanvasRenderer:
   m_ObjectHideFlags: 0

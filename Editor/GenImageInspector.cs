@@ -15,10 +15,11 @@ namespace Volorf.GenImage
             if (GUILayout.Button("Generate Image"))
             {
                 Debug.Log("Generating image...");
+                genImage.Generate();
             }
 
             // Add a button to save the image
-            if (GUILayout.Button("Save Image"))
+            if (GUILayout.Button("Save As Asset"))
             {
                 Debug.Log("Saving image...");
             }

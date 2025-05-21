@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Volorf.GenImage
@@ -12,19 +14,32 @@ namespace Volorf.GenImage
                 Model.DallE3 => "dall-e-3",
                 Model.DallE2 => "dall-e-2",
                 Model.GptImage1 => "gpt-image-1",
-                _ => "dall-e-3"
+                _ => "dall-e-2"
             };
         }
         
-        public static string GetQualityName(Quality quality)
+        public static string GetQualityName(Quality quality, Model modelContext)
         {
             return quality switch
             {
-                Quality.Low => "low",
-                Quality.Medium => "medium",
-                Quality.High => "high",
-                Quality.Auto => "auto",
-                _ => "auto"
+                Quality.Low => modelContext switch
+                {
+                    Model.GptImage1 => "low",
+                    Model.DallE3 => "standard",
+                    _ => ""
+                },
+                Quality.Medium => modelContext switch
+                {
+                    Model.GptImage1 => "medium",
+                    Model.DallE3 => "standard",
+                    _ => ""
+                },
+                Quality.High => modelContext switch
+                {
+                    Model.GptImage1 => "high",
+                    Model.DallE3 => "hd",
+                    _ => ""
+                }
             };
         }
 
@@ -92,18 +107,33 @@ namespace Volorf.GenImage
                 if (isLandscape)
                 {
                     float ratio = imageSize.x / imageSize.y;
-                    Vector2 newUV = new Vector2(1f * ratio, 1f);
+                    float genRatio = (float)genSize.x / (float)genSize.y;
+                    Vector2 newUV = new Vector2(1f * ratio / genRatio, 1f);
                     return new Rect((1f - newUV.x) / 2f, 0f, newUV.x, newUV.y);
                 }
                 else
                 {
                     float ratio = imageSize.y / imageSize.x;
-                    Vector2 newUV = new Vector2(1f, 1f * ratio);
+                    float genRatio = (float)genSize.y / (float)genSize.x;
+                    Vector2 newUV = new Vector2(1f, 1f * ratio / genRatio);
                     return new Rect(0f, (1f - newUV.y) / 2f, newUV.x, newUV.y);
                 }
             }
             
             return new Rect(0, 0, 1, 1);
+        }
+        
+        
+        public static string DictionaryToJson(Dictionary<string, string> dict)
+        {
+            var entries = dict.Select(d =>
+            {
+                if (d.Key == "n")
+                    return $"\"{d.Key}\":{d.Value}";
+                return $"\"{d.Key}\":\"{d.Value}\"";
+            });
+                
+            return "{" + string.Join(",", entries) + "}";
         }
     }
 }
