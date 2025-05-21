@@ -38,8 +38,6 @@ namespace Volorf.GenImage
 
         public async void Generate()
         {
-            UpdateRawImageUV();
-            
             try
             {
                 if (_isGenerating) return;
@@ -56,6 +54,7 @@ namespace Volorf.GenImage
                 if (_rawImage == null) 
                     _rawImage = GetComponent<RawImage>();
                 _rawImage.texture = _texture;
+                UpdateRawImageUV();
             }
             catch (Exception e)
             {
