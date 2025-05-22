@@ -27,8 +27,7 @@ namespace Volorf.GenImage
         {
             string endPoint = Utils.GetEndPoint(provider);
             Vector2Int genSize = Utils.GetSize(size, model);
-
-
+            
             Dictionary<string, string> req = new Dictionary<string, string>();
             req.Add("model", Utils.GetModelName(model));
             req.Add("prompt", prompt);
@@ -41,7 +40,6 @@ namespace Volorf.GenImage
             }
             
             string genReq = Utils.DictionaryToJson(req);
-            Debug.Log($"Request: {genReq}");
             using var post = new HttpRequestMessage(HttpMethod.Post, endPoint);
             post.Content = new StringContent(genReq, Encoding.UTF8, "application/json");
             post.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
@@ -53,8 +51,6 @@ namespace Volorf.GenImage
                 Debug.LogError($"Failed to generate image: {genResponse.StatusCode}");
                 return null;
             }
-            
-            // genResponse.EnsureSuccessStatusCode();
             
             string payload = await genResponse.Content.ReadAsStringAsync();
             Debug.Log($"Response: {payload}");
