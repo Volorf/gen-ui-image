@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3547184e2fdae454697f143e6a23445e, type: 3}
+  m_Name: GenImageSettings
+  m_EditorClassIdentifier: 
+  OpenAiApiKey: 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

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Volorf.GenImage
 {
     [ExecuteAlways]
-    [AddComponentMenu("Volorf/GenImage")]
+    [AddComponentMenu("Volorf/Gen Image")]
     [RequireComponent(typeof(RawImage))]
     public class GenImage : MonoBehaviour
     {

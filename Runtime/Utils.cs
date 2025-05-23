@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Volorf.GenImage
 {
+    [ExecuteAlways]
     public class Utils
     {
         public static readonly string OpenAiApiKeyName = "OPENAI_API_KEY";
