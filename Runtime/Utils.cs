@@ -7,6 +7,8 @@ namespace Volorf.GenImage
 {
     public class Utils
     {
+        public static readonly string OpenAiApiKeyName = "OPENAI_API_KEY";
+        
         public static string GetModelName(Model model)
         {
             return model switch
