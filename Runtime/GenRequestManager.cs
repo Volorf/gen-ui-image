@@ -11,8 +11,7 @@ namespace Volorf.GenImage
     public class GenRequestManager
     {
         HttpClient _http;
-        string _apiKey = "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";
-
+        
         public GenRequestManager()
         {
             _http = new HttpClient();
@@ -42,7 +41,7 @@ namespace Volorf.GenImage
             string genReq = Utils.DictionaryToJson(req);
             using var post = new HttpRequestMessage(HttpMethod.Post, endPoint);
             post.Content = new StringContent(genReq, Encoding.UTF8, "application/json");
-            post.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
+            post.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Utils.GetOpenAiApiKey());
             
             using HttpResponseMessage genResponse = await _http.SendAsync(post);
             

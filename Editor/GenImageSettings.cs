@@ -16,7 +16,7 @@ namespace Volorf.GenImage
         public static void ShowSettings()
         {
             _wnd = GetWindow<GenImageSettings>();
-            _wnd.titleContent = new GUIContent("Figma UI Image Settings");
+            _wnd.titleContent = new GUIContent("Gen Image Settings");
         }
 
         [MenuItem("Tools/Gen Image/Update All", false, 2)]
@@ -35,21 +35,22 @@ namespace Volorf.GenImage
 
         public void CreateGUI()
         {
-            _ui = Resources.Load<VisualTreeAsset>("FigmaUIImageSettings");
+            _ui = Resources.Load<VisualTreeAsset>("GenImageSettings");
             VisualElement root = rootVisualElement;
             VisualElement labelFromUXML = _ui.Instantiate();
             root.Add(labelFromUXML);
 
-            Button apply = root.Q<Button>("Apply");
-            _field = root.Q<TextField>("Token");
+            Button save = root.Q<Button>("save");
+            _field = root.Q<TextField>("key");
             _field.value = PlayerPrefs.GetString(Utils.OpenAiApiKeyName);
 
-            apply.RegisterCallback<ClickEvent>(SaveOpenAiApiKey);
+            save.RegisterCallback<ClickEvent>(SaveOpenAiApiKey);
         }
 
         void SaveOpenAiApiKey(ClickEvent ev)
         {
             PlayerPrefs.SetString(Utils.OpenAiApiKeyName, _field.value);
+            Debug.Log($"Saved OpenAI API key: {_field.value}");
             _wnd.Close();
         }
 

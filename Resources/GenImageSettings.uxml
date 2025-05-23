@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="OpenAI API Key" parse-escape-sequences="true" display-tooltip-when-elided="true" name="label" enable-rich-text="false" />
+        <ui:TextField picking-mode="Ignore" value="filler text" name="key" multiline="false" />
+    </ui:VisualElement>
+    <ui:Button text="Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="save" tooltip="Saves your API Key locally" />
+</ui:UXML>

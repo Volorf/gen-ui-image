@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace Volorf.GenImage
@@ -136,6 +137,11 @@ namespace Volorf.GenImage
             });
                 
             return "{" + string.Join(",", entries) + "}";
+        }
+
+        public static string GetOpenAiApiKey()
+        {
+            return PlayerPrefs.GetString(OpenAiApiKeyName);
         }
     }
 }
