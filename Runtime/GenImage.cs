@@ -43,6 +43,7 @@ namespace Volorf.GenImage
                 if (_isGenerating) return;
                 _isGenerating = true;
                 _genRequestManager ??= new GenRequestManager();
+                
                 _texture = await _genRequestManager.GenerateTexture2D(
                     provider: provider,
                     model: model,
@@ -50,11 +51,11 @@ namespace Volorf.GenImage
                     size: size,
                     prompt: prompt);
                 
-                _isGenerating = false;
                 if (_rawImage == null) 
                     _rawImage = GetComponent<RawImage>();
                 _rawImage.texture = _texture;
                 UpdateRawImageUV();
+                _isGenerating = false;
             }
             catch (Exception e)
             {

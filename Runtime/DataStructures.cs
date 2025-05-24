@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class DataStructures : MonoBehaviour
+namespace Volorf.GenImage
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class ImageData
     {
-        
+        public string url;
+        public string b64_json;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    [Serializable]
+    public class ImageResponse
     {
-        
+        public ImageData[] data;
     }
 }
