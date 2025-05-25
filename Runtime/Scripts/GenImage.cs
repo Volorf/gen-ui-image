@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,17 +24,36 @@ namespace Volorf.GenImage
         [Space(10)]
         [TextArea(3, 9)] public string prompt;
         
+        [SerializeField] GameObject _loaderPrefab;
+        
         Texture2D _texture;
         RawImage _rawImage;
         GenRequestManager _genRequestManager;
         bool _isGenerating;
+        
+        GameObject _loaderInstance;
 
         void Start()
         {
             _genRequestManager = new GenRequestManager();
             _rawImage = GetComponent<RawImage>();
+            
+            _loaderInstance = Instantiate(_loaderPrefab, transform);
+            
             if (generateOnStart) 
                 Generate();
+            
+            EditorApplication.playModeStateChanged += HandleLoading;
+        }
+
+        void HandleLoading(PlayModeStateChange playModeStateChange)
+        {
+            if (playModeStateChange == PlayModeStateChange.ExitingPlayMode)
+            {
+                Debug.Log("Exiting play mode, cleaning up...");
+                if (_loaderInstance != null)
+                    Destroy(_loaderInstance);
+            }
         }
 
         public async void Generate()
