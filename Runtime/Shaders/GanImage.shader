@@ -1,4 +1,4 @@
-Shader "Volorf/Loading"
+Shader "Volorf/GenImage"
 {
     Properties
     {
@@ -24,7 +24,7 @@ Shader "Volorf/Loading"
             struct app { float4 vertex:POSITION; float2 uv:TEXCOORD0; };
             struct v2f { float4 pos:SV_POSITION; float2 uv:TEXCOORD0; };
 
-            fixed4 _ColorA, _ColorB; float _Scale, _Speed;
+            fixed4 _ColorA, _ColorB; float _Scale, _Speed; sampler2D _MainTex;
 
             v2f vert(app v)
             {
@@ -34,14 +34,15 @@ Shader "Volorf/Loading"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                float2 oldUV = i.uv;
                 i.uv.x = i.uv.x - _Time.x * _Speed;
                 i.uv = float2( i.uv.x + i.uv.y, i.uv.x - i.uv.y );
 
                 i.uv *= _Scale;
                 fixed y = abs(cos(i.uv.y * 3.14159));
                 fixed4 col =  lerp(_ColorA, _ColorB, pow(y, 2) / 2);
-
-                return col;
+                fixed4 tex = tex2D(_MainTex, oldUV);
+                return tex + col;
             }
             ENDCG
         }

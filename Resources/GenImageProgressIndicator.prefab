@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8002124430333380890}
   - component: {fileID: 4169160999486345431}
   m_Layer: 5
-  m_Name: Loading
+  m_Name: GenImageProgressIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

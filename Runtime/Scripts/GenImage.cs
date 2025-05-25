@@ -24,7 +24,6 @@ namespace Volorf.GenImage
         [Space(10)]
         [TextArea(3, 9)] public string prompt;
         
-        [SerializeField] GameObject _loaderPrefab;
         
         Texture2D _texture;
         RawImage _rawImage;
@@ -38,23 +37,10 @@ namespace Volorf.GenImage
             _genRequestManager = new GenRequestManager();
             _rawImage = GetComponent<RawImage>();
             
-            _loaderInstance = Instantiate(_loaderPrefab, transform);
-            
             if (generateOnStart) 
                 Generate();
-            
-            EditorApplication.playModeStateChanged += HandleLoading;
         }
-
-        void HandleLoading(PlayModeStateChange playModeStateChange)
-        {
-            if (playModeStateChange == PlayModeStateChange.ExitingPlayMode)
-            {
-                Debug.Log("Exiting play mode, cleaning up...");
-                if (_loaderInstance != null)
-                    Destroy(_loaderInstance);
-            }
-        }
+        
 
         public async void Generate()
         {
@@ -73,7 +59,11 @@ namespace Volorf.GenImage
                 
                 if (_rawImage == null) 
                     _rawImage = GetComponent<RawImage>();
-                _rawImage.texture = _texture;
+                
+                Material rawImageMaterial = Instantiate(_rawImage.material);
+                rawImageMaterial.SetTexture("_MainTex", _texture);
+                _rawImage.material = rawImageMaterial;
+                
                 UpdateRawImageUV();
                 _isGenerating = false;
             }
