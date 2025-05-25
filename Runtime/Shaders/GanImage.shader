@@ -24,8 +24,10 @@ Shader "Volorf/GenImage"
             struct app { float4 vertex:POSITION; float2 uv:TEXCOORD0; };
             struct v2f { float4 pos:SV_POSITION; float2 uv:TEXCOORD0; };
 
-            fixed4 _ColorA, _ColorB; float _Scale, _Speed; sampler2D _MainTex;
-
+            fixed4 _ColorA, _ColorB;
+            float _Scale, _Speed;
+            sampler2D _MainTex;
+            
             v2f vert(app v)
             {
                 v2f o; o.pos = UnityObjectToClipPos(v.vertex); o.uv = v.uv;
@@ -37,12 +39,12 @@ Shader "Volorf/GenImage"
                 float2 oldUV = i.uv;
                 i.uv.x = i.uv.x - _Time.x * _Speed;
                 i.uv = float2( i.uv.x + i.uv.y, i.uv.x - i.uv.y );
-
                 i.uv *= _Scale;
                 fixed y = abs(cos(i.uv.y * 3.14159));
                 fixed4 col =  lerp(_ColorA, _ColorB, pow(y, 2) / 2);
-                fixed4 tex = tex2D(_MainTex, oldUV);
-                return tex + col;
+                fixed4 tex = tex2D(_MainTex, float2(oldUV.x + cos(i.uv.x * 2) * 0, oldUV.y + cos(i.uv.y * 3.14159 * 2) / 100));
+                fixed4 fCol = tex + fixed4(col.x * col.a, col.y * col.a, col.z * col.a, 0);
+                return fCol;
             }
             ENDCG
         }

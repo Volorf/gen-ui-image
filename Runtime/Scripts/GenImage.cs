@@ -61,6 +61,7 @@ namespace Volorf.GenImage
                     _rawImage = GetComponent<RawImage>();
                 
                 Material rawImageMaterial = Instantiate(_rawImage.material);
+                rawImageMaterial.name = "Gen Image Material";
                 rawImageMaterial.SetTexture("_MainTex", _texture);
                 _rawImage.material = rawImageMaterial;
                 
