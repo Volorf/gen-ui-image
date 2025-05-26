@@ -13,8 +13,6 @@ namespace Volorf.GenImage
             genImageObject.AddComponent<RawImage>();
             genImageObject.AddComponent<GenImage>();
             
-            Debug.Log("Gen Image has been added");
-            
             if (Selection.activeGameObject == null)
             {
                 Canvas canvas = GameObject.FindObjectOfType<Canvas>();
