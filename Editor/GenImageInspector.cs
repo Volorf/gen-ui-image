@@ -12,7 +12,7 @@ namespace Volorf.GenImage
             DrawDefaultInspector();
             EditorGUILayout.Space();
             // Add a button to generate an image
-            if (GUILayout.Button("Generate Image"))
+            if (GUILayout.Button("Generate"))
             {
                 Debug.Log("Generating image...");
                 genImage.Generate();
