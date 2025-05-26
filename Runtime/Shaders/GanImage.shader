@@ -6,9 +6,8 @@ Shader "Volorf/GenImage"
         _ColorB ("Second Color",   Color) = (0,0,0,0)
         _Scale  ("Scale", Float) = 0.5
         _Speed  ("Speed", Float) = 1
-        _PIStrength ("Progress Indicator", Range(0, 1)) = 0.5
+        _PIStrength ("Progress Indicator", Range(0, 1)) = 1.0
         _MainTex ("Texture", 2D) = "white" {}
-        _TimeX ("Time", Float) = 0
     }
     SubShader
     {
@@ -27,7 +26,7 @@ Shader "Volorf/GenImage"
             struct v2f { float4 pos:SV_POSITION; float2 uv:TEXCOORD0; };
 
             fixed4 _ColorA, _ColorB;
-            float _Scale, _Speed, _PIStrength, _TimeX;
+            float _Scale, _Speed, _PIStrength;
             sampler2D _MainTex;
             
             v2f vert(app v)
@@ -48,7 +47,6 @@ Shader "Volorf/GenImage"
                 float2 distUX = float2(0, cos(i.uv.y * 3.14159 * 2) / 100);
                 oldUV += distUX * _PIStrength;
                 fixed4 tex = tex2D(_MainTex, oldUV);
-                _TimeX = _Time.x;
                 fixed4 fCol = tex + fixed4(col.x * col.a, col.y * col.a, col.z * col.a, 0) * _PIStrength;
                 return fCol;
             }

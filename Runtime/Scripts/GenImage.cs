@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,7 +40,6 @@ namespace Volorf.GenImage
                 Generate();
         }
         
-
         public async void Generate()
         {
             try
@@ -49,6 +47,8 @@ namespace Volorf.GenImage
                 if (_isGenerating) return;
                 _isGenerating = true;
                 _genRequestManager ??= new GenRequestManager();
+                
+                _rawImage.material.SetFloat("_PIStrength", 1f);
                 
                 _texture = await _genRequestManager.GenerateTexture2D(
                     provider: provider,
@@ -64,6 +64,7 @@ namespace Volorf.GenImage
                 rawImageMaterial.name = "Gen Image Material";
                 rawImageMaterial.SetTexture("_MainTex", _texture);
                 _rawImage.material = rawImageMaterial;
+                _rawImage.material.SetFloat("_PIStrength", 0f);
                 
                 UpdateRawImageUV();
                 _isGenerating = false;
