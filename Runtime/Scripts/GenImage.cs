@@ -18,26 +18,23 @@ namespace Volorf.GenImage
         public FillMode fillMode = FillMode.Stretch;
         
         [Space(10)]
-        public bool generateOnStart = true;
+        public bool generateOnStart;
         
         [Space(10)]
         [TextArea(3, 9)] public string prompt;
         
-        
-        Texture2D _texture;
-        RawImage _rawImage;
-        GenRequestManager _genRequestManager;
         bool _isGenerating;
-        
-        GameObject _loaderInstance;
-        CanvasRenderer _canvasRenderer;
-        MaterialPropertyBlock _propertyBlock;
+        GenRequestManager _genRequestManager;
+        Material _genMaterial;
+        RawImage _rawImage;
+        Texture2D _texture;
 
         void Start()
         {
+            _genMaterial = new Material(Resources.Load<Material>("GenImageMaterial"));
             _genRequestManager = new GenRequestManager();
             _rawImage = GetComponent<RawImage>();
-            _canvasRenderer = _rawImage.canvasRenderer;
+            _rawImage.material = _genMaterial;
             
             if (generateOnStart) 
                 Generate();
@@ -52,8 +49,13 @@ namespace Volorf.GenImage
                 _genRequestManager ??= new GenRequestManager();
                 
                 _rawImage.material.SetFloat("_PIStrength", 1f);
-                _rawImage.material.SetTexture("_MainTex", _rawImage.texture);
+                if (_rawImage.texture != null)
+                {
+                    _rawImage.material.SetTexture("_MainTex", _rawImage.texture);
+                }
                 _rawImage.texture = null;
+                
+                prompt = string.IsNullOrWhiteSpace(prompt) ? "A cute red panda eating apples" : prompt;
                 
                 _texture = await _genRequestManager.GenerateTexture2D(
                     provider: provider,
@@ -61,11 +63,7 @@ namespace Volorf.GenImage
                     quality: quality,
                     size: size,
                     prompt: prompt);
-                
-                if (_rawImage == null) 
-                    _rawImage = GetComponent<RawImage>();
-                
-                // Material rawImageMaterial = new (_rawImage.material);
+
                 _rawImage.material.SetFloat("_PIStrength", 0f);
                 _rawImage.texture = _texture;
                 
@@ -79,6 +77,7 @@ namespace Volorf.GenImage
             catch (Exception e)
             {
                 Debug.LogError($"Error generating image: {e.Message}");
+                _rawImage.material.SetFloat("_PIStrength", 0f);
                 _isGenerating = false;
             }
         }
