@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Volorf.GenImage
 {
-    [ExecuteAlways]
+    [ExecuteInEditMode]
     [AddComponentMenu("Volorf/Gen Image")]
     [RequireComponent(typeof(RawImage))]
     public class GenImage : MonoBehaviour
@@ -30,11 +30,14 @@ namespace Volorf.GenImage
         bool _isGenerating;
         
         GameObject _loaderInstance;
+        CanvasRenderer _canvasRenderer;
+        MaterialPropertyBlock _propertyBlock;
 
         void Start()
         {
             _genRequestManager = new GenRequestManager();
             _rawImage = GetComponent<RawImage>();
+            _canvasRenderer = _rawImage.canvasRenderer;
             
             if (generateOnStart) 
                 Generate();
@@ -49,6 +52,8 @@ namespace Volorf.GenImage
                 _genRequestManager ??= new GenRequestManager();
                 
                 _rawImage.material.SetFloat("_PIStrength", 1f);
+                _rawImage.material.SetTexture("_MainTex", _rawImage.texture);
+                _rawImage.texture = null;
                 
                 _texture = await _genRequestManager.GenerateTexture2D(
                     provider: provider,
@@ -60,14 +65,16 @@ namespace Volorf.GenImage
                 if (_rawImage == null) 
                     _rawImage = GetComponent<RawImage>();
                 
-                Material rawImageMaterial = Instantiate(_rawImage.material);
-                rawImageMaterial.name = "Gen Image Material";
-                rawImageMaterial.SetTexture("_MainTex", _texture);
-                _rawImage.material = rawImageMaterial;
+                // Material rawImageMaterial = new (_rawImage.material);
                 _rawImage.material.SetFloat("_PIStrength", 0f);
+                _rawImage.texture = _texture;
                 
                 UpdateRawImageUV();
                 _isGenerating = false;
+                
+                #if UNITY_EDITOR
+                    UnityEditor.EditorUtility.SetDirty(_rawImage);
+                #endif
             }
             catch (Exception e)
             {
