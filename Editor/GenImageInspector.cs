@@ -17,6 +17,15 @@ namespace Volorf.GenImage
                 Debug.Log("Generating image...");
                 genImage.Generate();
             }
+
+            // TODO: Implement Assets saving
+            if (genImage.Texture != null && !genImage.IsGenerating)
+            {
+                if (GUILayout.Button("Save As Asset"))
+                {
+                    Debug.Log("Saving image as asset...");
+                }
+            }
         }
     }
 }

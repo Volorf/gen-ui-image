@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Volorf.GenImage
@@ -23,11 +24,13 @@ namespace Volorf.GenImage
         [Space(10)]
         [TextArea(3, 9)] public string prompt;
         
-        bool _isGenerating;
+        public Texture2D Texture { get; private set; }
+        public bool IsGenerating { get; private set; }
+        
         GenRequestManager _genRequestManager;
         Material _genMaterial;
         RawImage _rawImage;
-        Texture2D _texture;
+        
 
         void Start()
         {
@@ -44,8 +47,8 @@ namespace Volorf.GenImage
         {
             try
             {
-                if (_isGenerating) return;
-                _isGenerating = true;
+                if (IsGenerating) return;
+                IsGenerating = true;
                 _genRequestManager ??= new GenRequestManager();
                 
                 _rawImage.material.SetFloat("_PIStrength", 1f);
@@ -57,7 +60,7 @@ namespace Volorf.GenImage
                 
                 prompt = string.IsNullOrWhiteSpace(prompt) ? "A cute red panda eating apples" : prompt;
                 
-                _texture = await _genRequestManager.GenerateTexture2D(
+                Texture = await _genRequestManager.GenerateTexture2D(
                     provider: provider,
                     model: model,
                     quality: quality,
@@ -65,10 +68,10 @@ namespace Volorf.GenImage
                     prompt: prompt);
 
                 _rawImage.material.SetFloat("_PIStrength", 0f);
-                _rawImage.texture = _texture;
+                _rawImage.texture = Texture;
                 
                 UpdateRawImageUV();
-                _isGenerating = false;
+                IsGenerating = false;
                 
                 #if UNITY_EDITOR
                     UnityEditor.EditorUtility.SetDirty(_rawImage);
@@ -78,7 +81,7 @@ namespace Volorf.GenImage
             {
                 Debug.LogError($"Error generating image: {e.Message}");
                 _rawImage.material.SetFloat("_PIStrength", 0f);
-                _isGenerating = false;
+                IsGenerating = false;
             }
         }
 
