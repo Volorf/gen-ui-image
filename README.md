@@ -1,4 +1,4 @@
-# GenImage
+# Gen UI Image
 Create a UI image with AI-generated content in Unity with just a few clicks.
 
 ## System Requirements
@@ -20,7 +20,7 @@ GenImage needs your `API Key` to get access to OpenAI generative models. To get 
 
 More information you can find on [OpenAI's official guide](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 
-## How to add `API Key` to Gen Image
+## How to add `API Key` to Gen UI Image
 
 1. In Unity, open `Tools > Gen Image > Settings`.
 2. Paste your key in the field.
