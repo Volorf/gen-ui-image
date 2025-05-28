@@ -12,14 +12,14 @@ namespace Volorf.GenUIImage
         TextField _field;
         
 
-        [MenuItem("Tools/Gen Image/Settings", false, 1)]
+        [MenuItem("Tools/Gen UI Image/Settings", false, 1)]
         public static void ShowSettings()
         {
             _wnd = GetWindow<GenImageSettings>();
-            _wnd.titleContent = new GUIContent("Gen Image Settings");
+            _wnd.titleContent = new GUIContent("Gen UI Image Settings");
         }
 
-        [MenuItem("Tools/Gen Image/Update All", false, 2)]
+        [MenuItem("Tools/Gen UI Image/Update All", false, 2)]
         public static void UpdateAll()
         {
             // IFigmaImageUpdatable[] figmaImageUpdatables =

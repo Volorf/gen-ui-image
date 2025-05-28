@@ -11,7 +11,7 @@ namespace Volorf.GenUIImage
         {
             GameObject genImageObject = new ("Gen Image");
             genImageObject.AddComponent<RawImage>();
-            genImageObject.AddComponent<GenImage>();
+            genImageObject.AddComponent<GenUIImage>();
             
             if (Selection.activeGameObject == null)
             {

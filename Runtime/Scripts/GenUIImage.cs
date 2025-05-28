@@ -6,9 +6,9 @@ using UnityEngine.UI;
 namespace Volorf.GenUIImage
 {
     [ExecuteAlways]
-    [AddComponentMenu("Volorf/Gen Image")]
+    [AddComponentMenu("Volorf/Gen UI Image")]
     [RequireComponent(typeof(RawImage))]
-    public class GenImage : MonoBehaviour
+    public class GenUIImage : MonoBehaviour
     {
         public Provider provider = Provider.OpenAI;
         public Model model = Model.DallE3;

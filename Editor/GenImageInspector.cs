@@ -4,39 +4,39 @@ using UnityEngine;
 
 namespace Volorf.GenUIImage
 {
-    [CustomEditor(typeof(GenImage))]
+    [CustomEditor(typeof(GenUIImage))]
     public class GenImageInspector : Editor
     {
         bool _canSave;
         
         public override void OnInspectorGUI()
         {
-            GenImage genImage = (GenImage)target;
+            GenUIImage genUIImage = (GenUIImage)target;
             DrawDefaultInspector();
             EditorGUILayout.Space();
             
             if (GUILayout.Button("Generate"))
             {
-                genImage.Generate();
+                genUIImage.Generate();
                 _canSave = true;
             }
             
-            if (genImage.Texture != null && !genImage.IsGenerating && _canSave)
+            if (genUIImage.Texture != null && !genUIImage.IsGenerating && _canSave)
             {
                 if (GUILayout.Button("Save As Asset"))
                 {
                     if (!_canSave) return;
-                    _canSave = false; // Prevent multiple saves
+                    _canSave = false;
                     
-                    string path = "Assets/Volorf/Gen Image/Generated Images";
-                    string fileName = $"{Utils.GetModelName(genImage.model)}_{Utils.GetQualityName(genImage.quality, genImage.model)}_{System.DateTime.Now:yyyyMMdd_HHmmss}.png";
+                    string path = "Assets/Volorf/Gen UI Image/Generated Images";
+                    string fileName = $"{Utils.GetModelName(genUIImage.model)}_{Utils.GetQualityName(genUIImage.quality, genUIImage.model)}_{System.DateTime.Now:yyyyMMdd_HHmmss}.png";
                     
                     if (!Directory.Exists(path))
                     {
                        Directory.CreateDirectory(path); 
                     }
                     
-                    File.WriteAllBytesAsync(path + "/" + fileName, genImage.Texture.EncodeToPNG());
+                    File.WriteAllBytesAsync(path + "/" + fileName, genUIImage.Texture.EncodeToPNG());
                     AssetDatabase.Refresh();
                     
                     Debug.Log($"Image saved as {path}/{fileName}");
