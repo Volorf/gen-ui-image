@@ -1,0 +1,23 @@
+{
+    "name": "com.volorf.genuiimage",
+    "version": "1.0.0",
+    "displayName": "Gen UI Image",
+    "description": "UI Image with AI generated content.",
+    "unity": "2022.3",
+    "unityRelease": "40f1",
+    "hideInEditor": "false",
+    "dependencies": {},
+    "keywords": [
+      "Prototypes",
+      "Generative",
+      "GUI",
+      "UI",
+      "AI",
+      "OpenAI"
+    ],
+    "author": {
+      "name": "Oleg Frolov",
+      "email": "olegfrolovdesign@gmail.com",
+      "url": "https://www.olegfrolov.design"
+    }
+  }
