@@ -22,7 +22,8 @@ namespace Volorf.GenImage
             Model model,
             Quality quality,
             Size size,
-            string prompt)
+            string prompt,
+            string apiKey = "")
         {
             string endPoint = Utils.GetEndPoint(provider);
             Vector2Int genSize = Utils.GetSize(size, model);
@@ -41,7 +42,8 @@ namespace Volorf.GenImage
             string genReq = Utils.DictionaryToJson(req);
             using var post = new HttpRequestMessage(HttpMethod.Post, endPoint);
             post.Content = new StringContent(genReq, Encoding.UTF8, "application/json");
-            post.Headers.Authorization = new AuthenticationHeaderValue("Bearer", Utils.GetOpenAiApiKey());
+            string ak = string.IsNullOrEmpty(apiKey) ? Utils.GetOpenAiApiKey() : apiKey;
+            post.Headers.Authorization = new AuthenticationHeaderValue("Bearer", ak);
             
             using HttpResponseMessage genResponse = await _http.SendAsync(post);
             
