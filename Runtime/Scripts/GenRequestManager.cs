@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     public class GenRequestManager
     {

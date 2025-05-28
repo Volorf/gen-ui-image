@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     [ExecuteAlways]
     public class Utils

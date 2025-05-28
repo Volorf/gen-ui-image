@@ -1,4 +1,4 @@
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     public enum Model
     {

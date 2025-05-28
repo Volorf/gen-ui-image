@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     [ExecuteAlways]
     [AddComponentMenu("Volorf/Gen Image")]

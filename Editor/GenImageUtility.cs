@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     public class GenImageUtility
     {

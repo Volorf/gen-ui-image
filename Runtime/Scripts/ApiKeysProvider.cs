@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     public class ApiKeysProvider : MonoBehaviour
     {

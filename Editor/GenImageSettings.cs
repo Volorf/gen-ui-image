@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     public class GenImageSettings : EditorWindow
     {

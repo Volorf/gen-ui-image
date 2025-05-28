@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     [CustomEditor(typeof(GenImage))]
     public class GenImageInspector : Editor

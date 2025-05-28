@@ -1,6 +1,6 @@
 using System;
 
-namespace Volorf.GenImage
+namespace Volorf.GenUIImage
 {
     [Serializable]
     public class ImageData
