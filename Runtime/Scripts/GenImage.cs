@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Volorf.GenImage
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     [AddComponentMenu("Volorf/Gen Image")]
     [RequireComponent(typeof(RawImage))]
     public class GenImage : MonoBehaviour
@@ -31,7 +31,6 @@ namespace Volorf.GenImage
         Material _genMaterial;
         RawImage _rawImage;
         
-
         void Start()
         {
             _genMaterial = new Material(Resources.Load<Material>("GenImageMaterial"));
@@ -50,12 +49,13 @@ namespace Volorf.GenImage
                 if (IsGenerating) return;
                 IsGenerating = true;
                 _genRequestManager ??= new GenRequestManager();
-                
                 _rawImage.material.SetFloat("_PIStrength", 1f);
+                
                 if (_rawImage.texture != null)
                 {
                     _rawImage.material.SetTexture("_MainTex", _rawImage.texture);
                 }
+                
                 _rawImage.texture = null;
                 
                 prompt = string.IsNullOrWhiteSpace(prompt) ? "A cute red panda eating apples" : prompt;

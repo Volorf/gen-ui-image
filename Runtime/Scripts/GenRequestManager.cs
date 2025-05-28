@@ -65,7 +65,6 @@ namespace Volorf.GenImage
                 using HttpResponseMessage imgResp = await _http.GetAsync(imgUrl);
                 imgResp.EnsureSuccessStatusCode();
                 byte[] imgBytes = await imgResp.Content.ReadAsByteArrayAsync();
-            
                 
                 if (!texture.LoadImage(imgBytes))
                 {
