@@ -25,3 +25,6 @@ More information you can find on [OpenAI's official guide](https://help.openai.c
 1. In Unity, open `Tools > Gen Image > Settings`.
 2. Paste your key in the field.
 3. Save it.
+
+## How to create Gen UI Image
+1. Select `Canvas` and `Right Mouse Click` to call the context menu.

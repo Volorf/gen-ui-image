@@ -22,7 +22,7 @@ namespace Volorf.GenUIImage
         public bool generateOnStart;
         
         [Space(10)]
-        [TextArea(3, 9)] public string prompt;
+        [TextArea(3, 9)] public string prompt = "A cute red panda eating apples.";
         
         public Texture2D Texture { get; private set; }
         public bool IsGenerating { get; private set; }
@@ -58,7 +58,7 @@ namespace Volorf.GenUIImage
                 
                 _rawImage.texture = null;
                 
-                prompt = string.IsNullOrWhiteSpace(prompt) ? "A cute red panda eating apples" : prompt;
+                prompt = string.IsNullOrWhiteSpace(prompt) ? "A cute red panda eating apples." : prompt;
                 
                 Texture = await _genRequestManager.GenerateTexture2D(
                     provider: provider,
