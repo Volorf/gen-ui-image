@@ -42,7 +42,20 @@ By default `API Key` is stored locally on your computer with PlayerPrefs. To car
 4. Drag and drop the asset to the `ApiKeysProvider` component.
 
 ## How to update `Gen UI Image` in runtime
+Just call the `Generate()` method in your `GenUIImage` instance.
+You can also specify some of the parameters before the call.
+Here is an example:
 
+```c-sharp
+_genUiImage.model = Model.GptImage1;
+_genUiImage.size = Size.Portrait;
+_genUiImage.quality = Quality.High;
+_genUiImage.prompt = "A cute red panda eating crunchy biscuits.";
+_genUiImage.Generate();
+```
+
+> [!NOTE]
+> If you just to the `Generate()` method without specifying anything, it will use the serialized values that were set up in your editor. 
 
 ## Fun facts
 1. To work with `gpt-image-1` model, your organization should be verified. For me, it took a few minutes. More about this [here](https://help.openai.com/en/articles/10910291-api-organization-verification).
