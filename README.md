@@ -10,36 +10,39 @@ Create a UI image with AI-generated content in Unity with just a few clicks.
 3. Click on the `+` icon in the top left corner and select `Add package from git URL`;
 
 ## AI Providers
-Right now, GenImage supports only `OpenAI` API. 
+Right now, `Gen UI Image` supports only **OpenAI** API. 
 
 ## How to get `API Key`
-GenImage needs your `API Key` to get access to OpenAI generative models. To get the API key:
+GenImage needs your `API Key` to get access to OpenAI generative models. To get the `API key`:
 1. Go to your [OpenAI Account](https://platform.openai.com/settings/) 
 2. In `Settings` find `API Keys`. 
 3. Click `Create new secret key` and set it up. Copy it.
 
 More information you can find on [OpenAI's official guide](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 
-## Adding `API Key` to Gen UI Image
+## How to add `API Key` to `Gen UI Image`
 
 1. In Unity, open `Tools > Gen Image > Settings`.
 2. Paste your key in the field.
 3. Save it.
 
-## Creating Gen UI Image
+## How to create `Gen UI Image`
 1. Select `Canvas` and `Right Mouse Click` to call the context menu.
 2. Select `UI > Gen UI Image`.
 3. Enter your prompt and click `Generate`.
 
-## Saving a generated image
+## How to save a generated image
 After an image is generated, you will see a `Save as Asset` button. Click and the image will be saved there `Assets/Volorf/Gen UI Image/Generated Images`.
 
-## How to use Gen UI Image in builds
+## How to use `Gen UI Image` in builds
 By default `API Key` is stored locally on your computer with PlayerPrefs. To carry on this information to your builds you need to do following:
 1. Add a `ApiKeysProvider` component to your `Gen UI Image`.
 2. Open the context menu and select `Create > Gen UI Image > Create ApiKeysProviderData`. It will create a data asset.
 3. Add your `API key` to the asset.
 4. Drag and drop the asset to the `ApiKeysProvider` component.
+
+## How to update `Gen UI Image` in runtime
+
 
 ## Fun facts
 1. To work with `gpt-image-1` model, your organization should be verified. For me, it took a few minutes. More about this [here](https://help.openai.com/en/articles/10910291-api-organization-verification).

@@ -87,5 +87,33 @@ namespace Volorf.GenUIImage
             texture.Apply();
             return texture;
         }
+
+        public async Task<Texture2D> DummyGenerateTexture2D(
+            Provider provider,
+            Model model,
+            Quality quality,
+            Size size,
+            string prompt,
+            string apiKey = "")
+        {
+            Vector2Int genSize = Utils.GetSize(size, model);
+            Texture2D texture = new Texture2D(genSize.x, genSize.y, TextureFormat.RGBA32, mipChain: false);
+            
+            Color ranColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value, 1f);
+            
+            for (int y = 0; y < genSize.y; y++)
+            {
+                for (int x = 0; x < genSize.x; x++)
+                {
+                    texture.SetPixel(x, y, ranColor);
+                }
+            }
+            
+            texture.Apply();
+
+            await Task.Delay(2000);
+            
+            return texture;
+        }
     }
 }
