@@ -5,23 +5,23 @@ namespace Volorf.GenUIImage
 {
     public class ApiKeysProvider : MonoBehaviour
     {
-        [FormerlySerializedAs("_genImageSettingsData")] [FormerlySerializedAs("_genImageSettings")] [SerializeField] private GenImageApiKeys _genImageApiKeys;
+        [FormerlySerializedAs("_genImageApiKeys")] [FormerlySerializedAs("_genImageSettingsData")] [FormerlySerializedAs("_genImageSettings")] [SerializeField] private ApiKeysProviderData _apiKeysProviderData;
 
         void Awake()
         {
-            if (_genImageApiKeys == null)
+            if (_apiKeysProviderData == null)
             {
                 Debug.LogError("GenImageSettings is not assigned in ApiKeysProvider.");
                 return;
             }
 
-            if (string.IsNullOrEmpty(_genImageApiKeys.OpenAiApiKey))
+            if (string.IsNullOrEmpty(_apiKeysProviderData.OpenAiApiKey))
             {
                 Debug.LogError("OpenAI API key is not set in GenImageSettings.");
             }
             else
             {
-                PlayerPrefs.SetString(Utils.OpenAiApiKeyName, _genImageApiKeys.OpenAiApiKey);
+                PlayerPrefs.SetString(Utils.OpenAiApiKeyName, _apiKeysProviderData.OpenAiApiKey);
             }
         }
     }

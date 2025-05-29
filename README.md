@@ -20,11 +20,30 @@ GenImage needs your `API Key` to get access to OpenAI generative models. To get 
 
 More information you can find on [OpenAI's official guide](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 
-## How to add `API Key` to Gen UI Image
+## Adding `API Key` to Gen UI Image
 
 1. In Unity, open `Tools > Gen Image > Settings`.
 2. Paste your key in the field.
 3. Save it.
 
-## How to create Gen UI Image
+## Creating Gen UI Image
 1. Select `Canvas` and `Right Mouse Click` to call the context menu.
+2. Select `UI > Gen UI Image`.
+3. Enter your prompt and click `Generate`.
+
+## Saving a generated image
+After an image is generated, you will see a `Save as Asset` button. Click and the image will be saved there `Assets/Volorf/Gen UI Image/Generated Images`.
+
+## How to use Gen UI Image in builds
+By default `API Key` is stored locally on your computer with PlayerPrefs. To carry on this information to your builds you need to do following:
+1. Add a `ApiKeysProvider` component to your `Gen UI Image`.
+2. Open the context menu and select `Create > Gen UI Image > Create ApiKeysProviderData`. It will create a data asset.
+3. Add your `API key` to the asset.
+4. Drag and drop the asset to the `ApiKeysProvider` component.
+
+## Fun facts
+1. To work with `gpt-image-1` model, your organization should be verified. For me, it took a few minutes. More about this [here](https://help.openai.com/en/articles/10910291-api-organization-verification).
+2. If you try to send an empty prompt you will get a cute red panda eating an apple.
+
+## Contact me
+[X](https://www.x.com/volorf) | [Bsky](https://bsky.app/profile/volorf.bsky.social) | [Linkedin](https://www.linkedin.com/in/olegfrolovdesign/) | [Personal Site](https://olegfrolov.design/)
