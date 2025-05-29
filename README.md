@@ -70,7 +70,7 @@ _genUiImage.Generate();
 
 ## How to get just `Texture`
 ### Option 1
-If want to get just `Texture` you could get it via your `GenUIImage` instance by using `Texture` property (you need to make sure that you called `Generate` before!).
+If want to get just `Texture` you could get it via your `GenUIImage` instance by using `Texture` property (you need to make sure that you called `Generate()` before!).
 
 ```csharp
 _genUiImage.Generate();
@@ -81,7 +81,7 @@ Texture myTexture = _genUiImage.Texture;
 You can create an instance of `GenRequestManager` class and call `GenerateTexture2D` method. 
 
 > [!IMPORTANT]
-> The method is async. Make sure that you handle it properly.
+> The method is `async`. Make sure that you handle it properly.
 
 ```csharp
 GenRequestManager _genRequestManager = new GenRequestManager();
