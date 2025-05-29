@@ -68,5 +68,31 @@ _genUiImage.Generate();
 > [!NOTE]
 > If you just to the `Generate()` method without specifying anything, it will use the serialized values that were set up in your editor.
 
+## How to get just `Texture`
+### Option 1
+If want to get just `Texture` you could get it via your `GenUIImage` instance by using `Texture` property (you need to make sure that you called `Generate` before!).
+
+```csharp
+_genUiImage.Generate();
+Texture myTexture = _genUiImage.Texture;
+```
+
+### Option 2
+You can create an instance of `GenRequestManager` class and call `GenerateTexture2D` method. 
+
+> [!IMPORTANT]
+> The method is async. Make sure that you handle it properly.
+
+```csharp
+GenRequestManager _genRequestManager = new GenRequestManager();
+Texture myTexture = await _genRequestManager.GenerateTexture2D(
+    provider: Provider.OpenAI,
+    model: Model.GptImage1,
+    quality: Quality.High,
+    size: Size.Portrait,
+    prompt: "A red panda climbing a tree and eating bamboo."
+)
+```
+
 ## Contact me
 [X](https://www.x.com/volorf) | [Bsky](https://bsky.app/profile/volorf.bsky.social) | [Linkedin](https://www.linkedin.com/in/olegfrolovdesign/) | [Personal Site](https://olegfrolov.design/)
