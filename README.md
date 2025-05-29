@@ -12,6 +12,14 @@ Create a UI image with AI-generated content in Unity with just a few clicks.
 ## AI Providers
 Right now, `Gen UI Image` supports only **OpenAI** API. 
 
+**Available OpenAI Models:**
+* `dall-e-2`
+* `dall-e-3`
+* `gpt-image-1`
+
+> [!IMPORTANT]
+> To work with `gpt-image-1` model, your organization should be verified. For me, it took a few minutes. More about this [here](https://help.openai.com/en/articles/10910291-api-organization-verification).
+
 ## How to get `API Key`
 GenImage needs your `API Key` to get access to OpenAI generative models. To get the `API key`:
 1. Go to your [OpenAI Account](https://platform.openai.com/settings/) 
@@ -30,6 +38,9 @@ More information you can find on [OpenAI's official guide](https://help.openai.c
 1. Select `Canvas` and `Right Mouse Click` to call the context menu.
 2. Select `UI > Gen UI Image`.
 3. Enter your prompt and click `Generate`.
+
+> [!TIP]
+> If you try to send an empty prompt you will get a cute red panda eating an apple.
 
 ## How to save a generated image
 After an image is generated, you will see a `Save as Asset` button. Click and the image will be saved there `Assets/Volorf/Gen UI Image/Generated Images`.
@@ -55,11 +66,7 @@ _genUiImage.Generate();
 ```
 
 > [!NOTE]
-> If you just to the `Generate()` method without specifying anything, it will use the serialized values that were set up in your editor. 
-
-## Fun facts
-1. To work with `gpt-image-1` model, your organization should be verified. For me, it took a few minutes. More about this [here](https://help.openai.com/en/articles/10910291-api-organization-verification).
-2. If you try to send an empty prompt you will get a cute red panda eating an apple.
+> If you just to the `Generate()` method without specifying anything, it will use the serialized values that were set up in your editor.
 
 ## Contact me
 [X](https://www.x.com/volorf) | [Bsky](https://bsky.app/profile/volorf.bsky.social) | [Linkedin](https://www.linkedin.com/in/olegfrolovdesign/) | [Personal Site](https://olegfrolov.design/)
