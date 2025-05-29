@@ -57,7 +57,7 @@ Just call the `Generate()` method in your `GenUIImage` instance.
 You can also specify some of the parameters before the call.
 Here is an example:
 
-```c-sharp
+```csharp
 _genUiImage.model = Model.GptImage1;
 _genUiImage.size = Size.Portrait;
 _genUiImage.quality = Quality.High;
