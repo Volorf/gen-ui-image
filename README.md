@@ -93,6 +93,12 @@ _genUiImage.Generate();
 var myTexture = _genUiImage.Texture;
 ```
 
+Due to security consideration you might want to have ownership on `API Key` and send it to the instance explicitly:
+
+```csharp
+_genUiImage.Generate(apiKey: "SecretApiKeyFromYourAiProvider");
+```
+
 ### Option 2
 You can create an instance of `GenRequestManager` class and call `GenerateTexture2D` method. 
 
