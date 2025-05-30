@@ -102,7 +102,7 @@ _genUiImage.Generate(apiKey: "SecretApiKeyFromYourAiProvider");
 ### Option 2
 You can create an instance of `GenRequestManager` class and call `GenerateTexture2D` method. 
 
-> [!IMPORTANT]
+> [!NOTE]
 > The method is `async`. Make sure that you handle it properly.
 
 ```csharp
