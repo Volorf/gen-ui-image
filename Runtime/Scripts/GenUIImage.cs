@@ -42,7 +42,7 @@ namespace Volorf.GenUIImage
                 Generate();
         }
         
-        public async void Generate()
+        public async void Generate(string apiKey = "")
         {
             try
             {
@@ -65,7 +65,8 @@ namespace Volorf.GenUIImage
                     model: model,
                     quality: quality,
                     size: size,
-                    prompt: prompt);
+                    prompt: prompt,
+                    apiKey: apiKey);
 
                 _rawImage.material.SetFloat("_PIStrength", 0f);
                 _rawImage.texture = Texture;

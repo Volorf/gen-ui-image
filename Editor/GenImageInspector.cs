@@ -1,4 +1,5 @@
 using System.IO;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,17 +32,31 @@ namespace Volorf.GenUIImage
                     string path = "Assets/Volorf/Gen UI Image/Generated Images";
                     string fileName = $"{Utils.GetModelName(genUIImage.model)}_{Utils.GetQualityName(genUIImage.quality, genUIImage.model)}_{System.DateTime.Now:yyyyMMdd_HHmmss}.png";
                     
-                    if (!Directory.Exists(path))
+                    SaveTextureAsAsset(genUIImage.Texture, path, fileName).ContinueWith(task =>
                     {
-                       Directory.CreateDirectory(path); 
-                    }
-                    
-                    File.WriteAllBytesAsync(path + "/" + fileName, genUIImage.Texture.EncodeToPNG());
-                    AssetDatabase.Refresh();
-                    
-                    Debug.Log($"Image saved as {path}/{fileName}");
+                        if (task.IsFaulted)
+                        {
+                            Debug.LogError($"Failed to save image: {task.Exception}");
+                        }
+                        else
+                        {
+                            Debug.Log($"Image saved as {path}/{fileName}");
+                        }
+                    });
                 }
             }
+        }
+        
+        private async Task SaveTextureAsAsset(Texture2D texture, string path, string fileName)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            
+            string fullPath = Path.Combine(path, fileName);
+            await File.WriteAllBytesAsync(fullPath, texture.EncodeToPNG());
+            AssetDatabase.Refresh();
         }
     }
 }

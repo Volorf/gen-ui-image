@@ -18,7 +18,7 @@ Right now, `Gen UI Image` supports only **OpenAI** API.
 * `gpt-image-1`
 
 > [!IMPORTANT]
-> To work with `gpt-image-1` model, your organization should be verified. For me, it took a few minutes. More about this [here](https://help.openai.com/en/articles/10910291-api-organization-verification).
+> To work with `gpt-image-1` model, your organization must be verified. For me, it took a few minutes. More about this [here](https://help.openai.com/en/articles/10910291-api-organization-verification).
 
 ## How to get `API Key`
 GenImage needs your `API Key` to get access to OpenAI generative models. To get the `API key`:
@@ -27,6 +27,9 @@ GenImage needs your `API Key` to get access to OpenAI generative models. To get 
 3. Click `Create new secret key` and set it up. Copy it.
 
 More information you can find on [OpenAI's official guide](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
+
+> [!IMPORTANT]
+> If you plan to share your build with someone you do not know, you must consider a way to secure how you store your **API keys**. In runtime, you can call `Generate(string apiKey)` method on `GenUIImage` to explicitly pass your securely obtained key. Otherwise, it will try to extract it from `PlayerPrefs`.
 
 ## How to add `API Key` to `Gen UI Image`
 
@@ -46,11 +49,14 @@ More information you can find on [OpenAI's official guide](https://help.openai.c
 After an image is generated, you will see a `Save as Asset` button. Click and the image will be saved there `Assets/Volorf/Gen UI Image/Generated Images`.
 
 ## How to use `Gen UI Image` in builds
-By default `API Key` is stored locally on your computer with PlayerPrefs. To carry on this information to your builds you need to do following:
+By default `API Key` is stored locally on your computer with `PlayerPrefs`. To carry on this information to your builds you need to do following:
 1. Add a `ApiKeysProvider` component to your `Gen UI Image`.
 2. Open the context menu and select `Create > Gen UI Image > Create ApiKeysProviderData`. It will create a data asset.
 3. Add your `API key` to the asset.
 4. Drag and drop the asset to the `ApiKeysProvider` component.
+
+> [!IMPORTANT]
+> If you plan to give the build to someone you do not know, you must consider explicitly passing your securely obtained key to `Generate(string apiKey)` on your `GenUIImage` instance.
 
 ## How to update `Gen UI Image` in runtime
 Just call the `Generate()` method in your `GenUIImage` instance.
@@ -68,13 +74,23 @@ _genUiImage.Generate();
 > [!NOTE]
 > If you just to the `Generate()` method without specifying anything, it will use the serialized values that were set up in your editor.
 
+For security reasons you might want to explicitly pass `API Key` as a parameter in the `Generate()` method. Example:
+
+```csharp
+// The most secure way to store the keys is to use a server
+var keyObtainer = new MySecureCloudApiKeyObtainer();
+var key = keyObtainer.GetOpenAiKey();
+
+_genUiImage.Generate(apiKey: key);
+```
+
 ## How to get just `Texture`
 ### Option 1
-If want to get just `Texture` you could get it via your `GenUIImage` instance by using `Texture` property (you need to make sure that you called `Generate()` before!).
+If you want to get just `Texture` you could get it via your `GenUIImage` instance by using `Texture` property (you need to make sure that you called `Generate()` before!).
 
 ```csharp
 _genUiImage.Generate();
-Texture myTexture = _genUiImage.Texture;
+var myTexture = _genUiImage.Texture;
 ```
 
 ### Option 2
@@ -90,7 +106,8 @@ Texture myTexture = await _genRequestManager.GenerateTexture2D(
     model: Model.GptImage1,
     quality: Quality.High,
     size: Size.Portrait,
-    prompt: "A red panda climbing a tree and eating bamboo."
+    prompt: "A red panda climbing a tree and eating bamboo.",
+    apiKey: "SecretApiKeyFromYourAiProvider"
 )
 ```
 
