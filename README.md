@@ -1,4 +1,4 @@
-# Gen UI Image
+# That Time I used AI To Generate Texture2D For UI Image
 Create a UI image with AI-generated content in Unity with just a few clicks.
 
 ## System Requirements
