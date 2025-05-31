@@ -21,10 +21,13 @@ Right now, `Gen UI Image` supports only **OpenAI** API.
 > To work with `gpt-image-1` model, your organization must be verified. For me, it took a few minutes. More about this [here](https://help.openai.com/en/articles/10910291-api-organization-verification).
 
 ## How to get `API Key`
+
 GenImage needs your `API Key` to get access to OpenAI generative models. To get the `API key`:
 1. Go to your [OpenAI Account](https://platform.openai.com/settings/) 
 2. In `Settings` find `API Keys`. 
 3. Click `Create new secret key` and set it up. Copy it.
+
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ui-image__getting-api-key__openai.png" width="800" alt="How to get OpenAI Secret Key"/>
 
 More information you can find on [OpenAI's official guide](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 
