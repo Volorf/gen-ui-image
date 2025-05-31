@@ -106,14 +106,22 @@ _genUiImage.Generate();
 var myTexture = _genUiImage.Texture;
 ```
 
-Due to security consideration you might want to have ownership on `API Key` and send it to the instance explicitly:
+### Option 2
+You can create an instance of `GenRequestManager` class and call `GenerateTexture2D` method. In this case, you might need to pass your `API Key` as a parameter.
 
 ```csharp
-_genUiImage.Generate(apiKey: "SecretApiKeyFromYourAiProvider");
+public async Task<Texture2D> DummyGenerateTexture2D(
+    Provider provider,
+    Model model,
+    Quality quality,
+    Size size,
+    string prompt,
+    string apiKey = "")
+{
+     // Handles your request
+     // and returns a texture
+}
 ```
-
-### Option 2
-You can create an instance of `GenRequestManager` class and call `GenerateTexture2D` method. 
 
 > [!NOTE]
 > The method is `async`. Make sure that you handle it appropriately.
