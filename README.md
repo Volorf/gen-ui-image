@@ -51,11 +51,15 @@ More information you can find on [OpenAI's official guide](https://help.openai.c
 2. Select `UI > Gen UI Image`.
 3. Enter your prompt and click `Generate`.
 
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ai-image__adding-gen-ui-image__1280w__10fps.gif" width="800" alt="How to create Gen UI Image">
+
 > [!TIP]
 > If you try to send an empty prompt you will get a cute red panda eating an apple.
 
 ## How to save a generated image
 After an image is generated, you will see a `Save as Asset` button. Click and the image will be saved there `Assets/Volorf/Gen UI Image/Generated Images`.
+
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ai-image__saving-as-asset__1280w__10fps.gif" width="800" alt="How to save a generated image">
 
 ## How to use `Gen UI Image` in builds
 By default `API Key` is stored locally on your computer with `PlayerPrefs`. To carry on this information to your builds you need to do following:
