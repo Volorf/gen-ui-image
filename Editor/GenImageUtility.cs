@@ -10,7 +10,11 @@ namespace Volorf.GenUIImage
         public static void AddGenImage()
         {
             GameObject genImageObject = new ("Gen UI Image");
-            genImageObject.AddComponent<RawImage>();
+            
+            Texture2D placeholderTexture = Resources.Load<Texture2D>("gen-ui-image__placeholder");
+            RawImage rawImage = genImageObject.AddComponent<RawImage>();
+            rawImage.texture = placeholderTexture;
+            
             genImageObject.AddComponent<GenUIImage>();
             
             if (Selection.activeGameObject == null)
