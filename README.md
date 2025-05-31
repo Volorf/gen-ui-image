@@ -9,7 +9,7 @@ Create a UI image with AI-generated content in Unity with just a few clicks.
 2. In Unity, open `Window > Package Manager`;
 3. Click on the `+` icon in the top left corner and select `Add package from git URL`;
 
-<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ui-image__installation__1280w.gif" width="800" alt="How to install Gen UI Image package in Unity3D"/>
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ui-image__installation__1280w.gif" width="800">
 
 ## AI Providers
 Right now, `Gen UI Image` supports only **OpenAI** API. 
@@ -29,7 +29,7 @@ Right now, `Gen UI Image` supports only **OpenAI** API.
 2. In `Settings` find `API Keys`. 
 3. Click `Create new secret key` and set it up. Copy it.
 
-<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ui-image__getting-api-key__openai.png" width="800" alt="How to get OpenAI Secret Key"/>
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ui-image__getting-api-key__openai.png" width="800" alt="How to get OpenAI Secret Key" />
 
 More information you can find on [OpenAI's official guide](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 
