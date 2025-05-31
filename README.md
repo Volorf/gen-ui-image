@@ -22,7 +22,7 @@ Right now, `Gen UI Image` supports only **OpenAI** API.
 
 ## How to get `API Key`
 
-GenImage needs your `API Key` to get access to OpenAI generative models. To get the `API key`:
+`GenUIImage` needs your `API Key` to get access to OpenAI generative models. To get the `API key`:
 1. Go to your [OpenAI Account](https://platform.openai.com/settings/) 
 2. In `Settings` find `API Keys`. 
 3. Click `Create new secret key` and set it up. Copy it.
@@ -32,7 +32,7 @@ GenImage needs your `API Key` to get access to OpenAI generative models. To get 
 More information you can find on [OpenAI's official guide](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 
 > [!IMPORTANT]
-> If you plan to share your build with someone you do not know, you must consider a way to secure how you store your **API keys**. In runtime, you can call `Generate(string apiKey)` method on `GenUIImage` to explicitly pass your securely obtained key. Otherwise, it will try to extract it from `PlayerPrefs`.
+> If you plan to share your build with someone you do not know, you must consider a way to secure how you store your **API keys**. In runtime, you can call `Generate(string apiKey)` method on a `GenUIImage` instance to explicitly pass your securely obtained key. Otherwise, it will try to extract it from `PlayerPrefs`.
 
 ## How to add `API Key` to `Gen UI Image`
 
