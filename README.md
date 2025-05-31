@@ -9,7 +9,7 @@ Create a UI image with AI-generated content in Unity with just a few clicks.
 2. In Unity, open `Window > Package Manager`;
 3. Click on the `+` icon in the top left corner and select `Add package from git URL`;
 
-<img src="https://www.olegfrolov.design/images/other/figma_ui_image/how_to_install.gif" width="800" alt="`How to install Gen UI Image in Unity3D">
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ui-image__installation__1280w__10fps.gif" width="800" alt="`How to install Gen UI Image in Unity3D">
 
 ## AI Providers
 Right now, `Gen UI Image` supports only **OpenAI** API. 
