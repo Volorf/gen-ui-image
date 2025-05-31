@@ -1,5 +1,7 @@
 # That Time I used AI To Generate Texture2D For UI Image
-Create a UI image with AI-generated content in Unity with just a few clicks.
+Create a UI image with AI-generated content in Unity.
+
+<img src="#" width="800" alt="Creating a UI Image in Unity with an AI generated texture using the GenUIImage">
 
 ## System Requirements
 `Unity 2022.3` or later.
@@ -9,7 +11,7 @@ Create a UI image with AI-generated content in Unity with just a few clicks.
 2. In Unity, open `Window > Package Manager`;
 3. Click on the `+` icon in the top left corner and select `Add package from git URL`;
 
-<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ui-image__installation__1280w__10fps.gif" width="800" alt="`How to install Gen UI Image in Unity3D">
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ui-image__installation__1280w__10fps.gif" width="800" alt="How to install Gen UI Image in Unity3D">
 
 ## AI Providers
 Right now, `Gen UI Image` supports only **OpenAI** API. 
@@ -41,6 +43,8 @@ More information you can find on [OpenAI's official guide](https://help.openai.c
 1. In Unity, open `Tools > Gen Image > Settings`.
 2. Paste your key in the field.
 3. Save it.
+
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/gen-ai-image__adding-api-key_1280w_10fps.gif" width="800" alt="How to add OpenAI Secret Key to Gen UI Image">
 
 ## How to create `Gen UI Image`
 1. Select `Canvas` and `Right Mouse Click` to call the context menu.
@@ -108,7 +112,7 @@ _genUiImage.Generate(apiKey: "SecretApiKeyFromYourAiProvider");
 You can create an instance of `GenRequestManager` class and call `GenerateTexture2D` method. 
 
 > [!NOTE]
-> The method is `async`. Make sure that you handle it properly.
+> The method is `async`. Make sure that you handle it appropriately.
 
 ```csharp
 GenRequestManager _genRequestManager = new GenRequestManager();

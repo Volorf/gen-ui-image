@@ -6,10 +6,10 @@ namespace Volorf.GenUIImage
 {
     public class GenImageUtility
     {
-        [MenuItem("GameObject/UI/Gen Image")]
+        [MenuItem("GameObject/UI/Gen UI Image")]
         public static void AddGenImage()
         {
-            GameObject genImageObject = new ("Gen Image");
+            GameObject genImageObject = new ("Gen UI Image");
             genImageObject.AddComponent<RawImage>();
             genImageObject.AddComponent<GenUIImage>();
             
@@ -31,7 +31,7 @@ namespace Volorf.GenUIImage
                 genImageObject.transform.localScale = Vector3.one;
             }
             
-            Undo.RegisterCreatedObjectUndo(genImageObject, "Create a Gen Image");
+            Undo.RegisterCreatedObjectUndo(genImageObject, "Create a Gen UI Image");
             
             Selection.activeGameObject = genImageObject;
         }
