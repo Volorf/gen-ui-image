@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Volorf.GenUIImage
@@ -42,6 +41,10 @@ namespace Volorf.GenUIImage
                 Generate();
         }
         
+        /// <summary>
+        /// Creates a request to an AI provider with a component setting defined in Editor.
+        /// </summary>
+        /// <param name="apiKey">Optionally, you can pass your API Key explicitly.</param>
         public async void Generate(string apiKey = "")
         {
             try

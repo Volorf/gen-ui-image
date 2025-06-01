@@ -17,6 +17,15 @@ namespace Volorf.GenUIImage
             _http = new HttpClient();
         }
         
+        /// <summary>
+        /// Creates a request to an AI provider with a provided set of arguments.
+        /// </summary>
+        /// <param name="provider">Your AI Provider.</param>
+        /// <param name="model">Supported model for image generation.</param>
+        /// <param name="quality">Model-depending parameter. Defines the quality of generation itself (amount of tokens used).</param>
+        /// <param name="prompt">Description of what you want to be generated.</param>
+        /// <param name="size">Model-depending parameter. Defines an available size variation for a given model.</param>
+        /// <param name="apiKey">Key to access your AI provider.</param>
         public async Task<Texture2D> GenerateTexture2D(
             Provider provider,
             Model model,
@@ -87,7 +96,10 @@ namespace Volorf.GenUIImage
             texture.Apply();
             return texture;
         }
-
+        
+        /// <summary>
+        /// Dummy method to emulate a request.
+        /// </summary>
         public async Task<Texture2D> DummyGenerateTexture2D(
             Provider provider,
             Model model,
