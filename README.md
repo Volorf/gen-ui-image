@@ -1,7 +1,5 @@
-# That Time I used AI To Generate Texture2D For UI Image
+# Gen UI Image
 Create a UI image with AI-generated content in Unity.
-
-<img src="#" width="800" alt="Creating a UI Image in Unity with an AI generated texture using the GenUIImage">
 
 ## System Requirements
 `Unity 2022.3` or later.

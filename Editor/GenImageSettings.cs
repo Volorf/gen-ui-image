@@ -19,20 +19,6 @@ namespace Volorf.GenUIImage
             _wnd.titleContent = new GUIContent("Gen UI Image Settings");
         }
 
-        [MenuItem("Tools/Gen UI Image/Update All", false, 2)]
-        public static void UpdateAll()
-        {
-            // IFigmaImageUpdatable[] figmaImageUpdatables =
-            //     FindObjectsOfType<MonoBehaviour>(false).OfType<IFigmaImageUpdatable>().ToArray();
-            //
-            // foreach (IFigmaImageUpdatable updatable in figmaImageUpdatables)
-            // {
-            //     updatable.UpdateFigmaImage();
-            // }
-            //
-            // Debug.Log("All textures have been updated.");
-        }
-
         public void CreateGUI()
         {
             _ui = Resources.Load<VisualTreeAsset>("GenImageSettings");
@@ -53,6 +39,5 @@ namespace Volorf.GenUIImage
             Debug.Log($"Saved OpenAI API key: {_field.value}");
             _wnd.Close();
         }
-
     }
 }

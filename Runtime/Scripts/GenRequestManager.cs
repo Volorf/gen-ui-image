@@ -63,9 +63,7 @@ namespace Volorf.GenUIImage
             }
             
             string payload = await genResponse.Content.ReadAsStringAsync();
-            Debug.Log($"Response: {payload}");
             ImageResponse imageResponse = JsonUtility.FromJson<ImageResponse>(payload);
-            
             Texture2D texture = new Texture2D(2, 2, TextureFormat.RGBA32, mipChain: false);
             
             if (Utils.GetModelName(model) != "gpt-image-1")
@@ -110,7 +108,6 @@ namespace Volorf.GenUIImage
         {
             Vector2Int genSize = Utils.GetSize(size, model);
             Texture2D texture = new Texture2D(genSize.x, genSize.y, TextureFormat.RGBA32, mipChain: false);
-            
             Color ranColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value, 1f);
             
             for (int y = 0; y < genSize.y; y++)
@@ -122,9 +119,7 @@ namespace Volorf.GenUIImage
             }
             
             texture.Apply();
-
-            await Task.Delay(2000);
-            
+            await Task.Delay(3000);
             return texture;
         }
     }
