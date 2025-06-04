@@ -108,7 +108,7 @@ var myTexture = _genUiImage.Texture;
 You can create an instance of `GenRequestManager` class and call `GenerateTexture2D` method. In this case, you might need to pass your `API Key` as a parameter.
 
 ```csharp
-public async Task<Texture2D> DummyGenerateTexture2D(
+public async Task<Texture2D> GenerateTexture2D(
     Provider provider,
     Model model,
     Quality quality,
