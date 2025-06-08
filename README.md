@@ -1,6 +1,9 @@
 # Gen UI Image
 Create a UI image with AI-generated content in Unity.
 
+<img src="https://www.olegfrolov.design/images/other/gen-ui-image/generating-preview.gif" width="800" alt="Generate a preview placeholder for a product card">
+
+
 ## System Requirements
 `Unity 2022.3` or later.
 
